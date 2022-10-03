@@ -45,4 +45,6 @@ WLR_BACKENDS=headless WLR_LIBINPUT_NO_DEVICES=1 phoc --exec "bash -lc '/usr/libe
 
 ## TODO
 
+Fix `gsettings set sm.puri.phoc auto-maximize false` in Dockerfile not taking effect, currently it needs to be run manually after container startup to be able to un-maximize windows and move them around.
+
 Document Docker usage (maybe `--tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro`)
