@@ -1,8 +1,9 @@
 # Phosh Container with VNC Server
 
 A graphical GNOME Phosh user session in a container, accessible via VNC and using software rendering.
+This works thanks to [wayvnc](https://github.com/any1/wayvnc) for wlroots.
 
-Note that GNOME Shell has also has desktop sharing via RDP and VNC but here Phosh is used due to it being a bit more lightweight.
+Note that GNOME Shell also has desktop sharing via RDP and VNC but here Phosh is used due to it being a bit more lightweight.
 
 ## Usage
 
