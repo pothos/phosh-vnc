@@ -10,8 +10,8 @@ RUN groupadd --system sudo
 RUN useradd --create-home --shell /bin/bash -G sudo user
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 ENV LIBGL_ALWAYS_SOFTWARE=1
-# TODO: Fix the below to take effect
-RUN sudo -u user dbus-launch gsettings set sm.puri.phoc auto-maximize false
+COPY phosh-auto-maximize.service /etc/systemd/user/phosh-auto-maximize.service
+RUN mkdir -p /etc/systemd/user/default.target.wants && ln -fs /etc/systemd/user/phosh-auto-maximize.service /etc/systemd/user/default.target.wants/phosh-auto-maximize.service
 EXPOSE 7050
 # Set up a /dev/console link to have the same behavior with or without "-it", needs podman run --systemd=always
 CMD [ "/bin/sh", "-c", "if ! [ -e /dev/console ] ; then socat -u pty,link=/dev/console stdout & fi ; exec /sbin/init" ]

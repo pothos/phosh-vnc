@@ -1,0 +1,11 @@
+[Unit]
+Description=Phosh Window Management Setting
+
+[Service]
+ExecStart=sh -c 'sleep 30; gsettings set sm.puri.phoc auto-maximize false'
+RemainAfterExit=yes
+Type=oneshot
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
