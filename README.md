@@ -24,6 +24,16 @@ Test it out with `vinagre -f vnc://127.0.0.1:7050` and stop the container with C
 
 The user account `user` has no password set and you have sudo access without a password from it.
 
+With Docker things are a bit more complicated, you can try one of (I didn't verify this works):
+
+```
+docker run --rm --privileged --cgroupns=host --tmpfs /tmp --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup -p 7050:7050 phosh-vnc
+# or
+docker run --rm --privileged --cgroup-parent=docker.slice --cgroupns private --tmpfs /tmp --tmpfs /run --tmpfs /run/lock -p 7050:7050 phosh-vnc
+```
+
+Despite running Phosh in headless mode, `CONFIG_DRM` seems to be required.
+
 ## Note
 
 If you already have SSH access to a system with Phosh installed, you don't need to use the container.
@@ -42,7 +52,3 @@ gsettings set sm.puri.phoc auto-maximize false
 killall phoc || true
 WLR_BACKENDS=headless WLR_LIBINPUT_NO_DEVICES=1 phoc --exec "bash -lc '/usr/libexec/phosh --unlocked & wayvnc -g 127.0.0.1 7050'"
 ```
-
-## TODO
-
-Document Docker usage (maybe `--tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro`)
