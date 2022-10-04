@@ -36,7 +36,7 @@ However, this wasn't enough for me and Phosh failed to start for some reason.
 
 ## Note
 
-If you already have SSH access to a system with Phosh installed, you don't need to use the container.
+If you already have SSH access to a system with Phosh and wayvnc installed, you don't need to use the container.
 Instead, you can either directly create the file `/etc/systemd/system/phosh.service.d/10-headless.conf` as done in the container
 or you can start Phosh temporarily:
 
